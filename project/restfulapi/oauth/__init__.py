@@ -4,11 +4,11 @@ from flask import jsonify, request
 import flask_restful
 from project import blueprints, app
 
-api = flask_restful.Api(blueprints[__name__], prefix="/startsession")
+api = flask_restful.Api(blueprints[__name__], prefix="/oauth/google")
 
-@api.route('/')
+@api.route('/login')
 class OAuth_Google(flask_restful.Resource):
-    def get(self):
+    def post(self):
         if 'id_token' in request.args:
             id_token = request.args.get('id_token')
         else:
