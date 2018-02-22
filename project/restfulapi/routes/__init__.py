@@ -1,3 +1,4 @@
+from flask import Blueprint
 import flask_restful
 from setuptools import find_packages
 import project.restfulapi.routes.route_decorator
