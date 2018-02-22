@@ -8,7 +8,7 @@ env:
   - FLASK_ENV=Testing
 script:
   - mv tests/run_server.py .
-  - tests/tests.sh
+  - tests/scripts/tests.sh
 after_success:
   - coverage combine
   - coveralls
