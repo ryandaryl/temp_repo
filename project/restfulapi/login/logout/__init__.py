@@ -1,1 +1,1 @@
-import flask_logout
+import .flask_logout
