@@ -1,0 +1,46 @@
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="478298850154-13hei7id3n8et1o722j9rdnrb2r3u3v9.apps.googleusercontent.com">
+
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<a href="#" onclick="signOut();">Sign out</a>
+
+<script>
+
+  var xhr = new XMLHttpRequest()
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          if (xhr.responseText.substring(0, 1) == '{' ) {
+                cbfunc(JSON.parse(xhr.responseText))
+          } else {
+              cbfunc(xhr.responseText)
+          }
+      }
+  }
+
+  cbfunc = function(data) {
+      console.log(data)
+  }
+
+  function backend_login() {
+      url = `${ location.protocol }//${ location.host }/simple/login`
+      xhr.open("GET", url)
+      xhr.send()
+  }
+
+  function backend_logout() {
+      url = `${ location.protocol }//${ location.host }/simple/logout`
+      xhr.open("GET", url)
+      xhr.send()
+  }
+
+  function onSignIn(googleUser) {
+    backend_login()
+  }
+
+  function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance()
+      auth2.signOut().then(function() {
+          backend_logout()      
+      })
+  }
+</script>

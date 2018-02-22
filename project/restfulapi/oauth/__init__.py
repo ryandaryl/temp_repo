@@ -7,7 +7,7 @@ from project import blueprints, app
 api = flask_restful.Api(blueprints[__name__], prefix="/oauth/google")
 
 @api.route('/login')
-class OAuth_Google(flask_restful.Resource):
+class OAuth_Google_login(flask_restful.Resource):
     def post(self):
         if 'id_token' in request.values:
             id_token = request.values.get('id_token')

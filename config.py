@@ -1,8 +1,11 @@
+import os
+
 # General
 
 class Config(object):
     DEFAULT_ENVIRONMENT = 'Production'
     GOOGLE_URL = 'https://www.googleapis.com/oauth2/v3/'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret_xxx'
 
 # Environments
 

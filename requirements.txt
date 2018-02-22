@@ -5,3 +5,4 @@ behave_rest
 pyyaml
 whitenoise
 requests
+flask-login

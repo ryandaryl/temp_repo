@@ -1,6 +1,7 @@
 import os
 from flask import Flask, Blueprint
 from whitenoise import WhiteNoise
+from flask_login import LoginManager, UserMixin
 import flask_restful
 from setuptools import find_packages
 import project.restfulapi.route_decorator
@@ -11,6 +12,20 @@ app = Flask(__name__)
 wnapp = WhiteNoise(app, root='./project/ui/')
 
 blueprints = {}
+
+class User(UserMixin):
+
+    def __init__(self, id):
+        self.id = id
+        
+    def __repr__(self):
+        return str(self.id)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+@login_manager.user_loader
+def load_user(userid):
+    return User(userid)
 
 def get_config():
     app.config.from_object('config.Config')
