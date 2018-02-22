@@ -1,1 +1,1 @@
-import .flask_logout
+import project.restfulapi.login.logout.flask_logout
