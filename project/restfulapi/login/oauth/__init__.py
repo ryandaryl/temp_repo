@@ -3,7 +3,9 @@ import requests
 from flask import jsonify, request
 import flask_restful
 from flask_login import login_user
-from project import blueprints, app, User
+from project import app
+from project.restfulapi import blueprints
+from project.restfulapi.login import User
 
 api = flask_restful.Api(blueprints[__name__], prefix="/oauth/google")
 

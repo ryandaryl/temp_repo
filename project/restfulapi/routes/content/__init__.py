@@ -1,7 +1,7 @@
 from flask import jsonify
 import flask_restful
 from flask_login import login_required
-from project import blueprints
+from project.restfulapi import blueprints
 
 api = flask_restful.Api(blueprints[__name__], prefix="/content")
 
