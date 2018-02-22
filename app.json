@@ -1,0 +1,7 @@
+{
+  "name": "Python Flask-RESTful-Blueprints starter",
+  "description": "This starter app exposes a sample RESTful API, using Blueprints to keep the code organised.",
+  "repository": "https://github.com/ryandaryl/heroku-python-minimal",
+  "logo": "http://www.unixstickers.com/image/data/stickers/python/python.sh.png",
+  "keywords": ["python", "flask", "blueprints", "restful"]
+}
