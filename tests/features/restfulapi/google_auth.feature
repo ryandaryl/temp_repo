@@ -29,4 +29,4 @@ Feature: Google authentication feature
     Then the response status code should equal 200
     And the response status message should equal "OK"
     And the response header "Content-Type" should equal "application/json"
-    And the response parameter "status" should equal "logged_in"
+    And the response parameter "status" should equal "log_in_ok"
