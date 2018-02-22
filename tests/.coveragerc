@@ -1,4 +1,4 @@
 [run]
 concurrency = multiprocessing
 source = .
-omit = /tests/*
+omit = ./tests/*
