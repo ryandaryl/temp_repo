@@ -2,7 +2,7 @@ language: python
 python:
   - "3.6"
 before_install:
-  - chmod +x tests/tests.sh
+  - chmod +x tests/scripts/tests.sh
 install: "pip install -r requirements.txt coverage coveralls"
 env:
   - FLASK_ENV=Testing
