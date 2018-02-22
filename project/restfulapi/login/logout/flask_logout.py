@@ -3,7 +3,7 @@ import flask_restful
 from flask_login import login_required, logout_user
 from project.restfulapi import blueprints
 
-api = flask_restful.Api(blueprints[__name__], prefix="/logout")
+api = flask_restful.Api(blueprints[__package__], prefix="/logout")
 
 @api.route('/')
 class SimpleLogout(flask_restful.Resource):
