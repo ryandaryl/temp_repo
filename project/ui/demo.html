@@ -2,6 +2,7 @@
 <meta name="google-signin-client_id" content="478298850154-13hei7id3n8et1o722j9rdnrb2r3u3v9.apps.googleusercontent.com">
 
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+<br><a href="/content">Try to view the protected content.</a><br><br>
 <a href="#" onclick="signOut();">Sign out</a>
 
 <script>
@@ -9,11 +10,7 @@
   var xhr = new XMLHttpRequest()
   xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-          if (xhr.responseText.substring(0, 1) == '{' ) {
-                cbfunc(JSON.parse(xhr.responseText))
-          } else {
-              cbfunc(xhr.responseText)
-          }
+          cbfunc(JSON.parse(xhr.responseText))
       }
   }
 
@@ -21,20 +18,22 @@
       console.log(data)
   }
 
-  function backend_login() {
-      url = `${ location.protocol }//${ location.host }/simple/login`
-      xhr.open("GET", url)
-      xhr.send()
+  function backend_login(id_token) {
+      url = `${ location.protocol }//${ location.host }/oauth/google/login`
+      xhr.open("POST", url)
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send('id_token=' + id_token);
   }
 
   function backend_logout() {
-      url = `${ location.protocol }//${ location.host }/simple/logout`
-      xhr.open("GET", url)
+      url = `${ location.protocol }//${ location.host }/logout`
+      xhr.open("DELETE", url)
       xhr.send()
   }
 
   function onSignIn(googleUser) {
-    backend_login()
+    var id_token = googleUser.getAuthResponse().id_token;
+    backend_login(id_token)
   }
 
   function signOut() {
