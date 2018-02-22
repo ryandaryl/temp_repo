@@ -15,6 +15,7 @@ class Development(Config):
 
 class Testing(Config):
     GOOGLE_URL = 'http://0.0.0.0:8001'
+    GOOGLE_CLIENT_ID = '456testgoogleclientid789'
 
 class Staging(Config):
     pass
