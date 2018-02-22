@@ -10,7 +10,6 @@ api = flask_restful.Api(blueprints[__name__], prefix="/oauth/google")
 @api.route('/login')
 class OAuth_Google_login(flask_restful.Resource):
     def post(self):
-        print(request.values)
         if 'id_token' in request.values:
             id_token = request.values.get('id_token')
         else:
@@ -21,17 +20,20 @@ class OAuth_Google_login(flask_restful.Resource):
             return response
         google_url = app.config.get('GOOGLE_URL')
         path = 'tokeninfo'
-        params = { 'id_token': id_token }
         url = '/'.join(s.strip('/') for s in [google_url, path])
-        print(url)
+        params = { 'id_token': id_token }
         r = requests.get(url=url, params=params).json()
-        print(str(r))
         if 'error_description' in r:
             # Token not valid
             response = jsonify(r)
             response.status_code = 400
             return response
         elif r['aud'] == app.config.get('GOOGLE_CLIENT_ID'):
-            login_user(User(0))
-            return jsonify({'status': 'log_in_ok', 'message': 'Log in to backend services was successful.'})
+            google_user_id = r['sub']
+            # It should look up the user's database ID using the Google ID.
+            # It uses id=0 for all users.
+            user = User(0)
+            login_user(user)
+            return jsonify({'status': 'log_in_ok',
+                            'message': 'Log in to backend services was successful.'})
 
