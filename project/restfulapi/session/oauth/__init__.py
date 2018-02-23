@@ -3,12 +3,12 @@ from flask import jsonify
 import flask_restful
 from project import app
 from project.restfulapi import blueprints
-from project.restfulapi.session.simple import Login
+import project.restfulapi.session.simple
 
 api = flask_restful.Api(blueprints[__name__], prefix="/oauth/google")
 
 @api.route('/login')
-class OAuth_Google_Login(Login):
+class OAuth_Google_Login(simple.Login):
 
     def validate(self):
         if 'id_token' in request.values:
