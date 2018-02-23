@@ -1,1 +1,0 @@
-from project.restfulapi.session.simple import flask_session
