@@ -17,7 +17,7 @@ class User(UserMixin):
         
 
 @api.route('/')
-class SimpleLogout(flask_restful.Resource):
+class Logout(flask_restful.Resource):
 
     @login_required
     def delete(self):
@@ -31,6 +31,11 @@ class SimpleLogout(flask_restful.Resource):
 class Login(flask_restful.Resource):
 
     def post(self):
+        values_ok, message = self.check_values(request.values)
+        if not values_ok:
+            response = jsonify({'message': message, 'status': 'login_failed'})
+            response.status_code = 400
+            return response
         if self.validate(request.values):
             # Should get database user id from self.[properties]
             # And create new user if ID is not found.
@@ -46,3 +51,6 @@ class Login(flask_restful.Resource):
     
     def validate(self):
         return False
+
+    def check_values(self, request_values):
+        return True
