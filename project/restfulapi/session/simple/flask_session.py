@@ -1,6 +1,6 @@
 from flask import jsonify, request
 import flask_restful
-from flask_login import login_required, logout_user, UserMixin
+from flask_login import login_required, login_user, logout_user, UserMixin
 from project.restfulapi import blueprints
 
 api = flask_restful.Api(blueprints[__package__], prefix="/session")
