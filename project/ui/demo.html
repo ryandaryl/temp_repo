@@ -19,14 +19,14 @@
   }
 
   function backend_login(id_token) {
-      url = `${ location.protocol }//${ location.host }/oauth/google/login`
+      url = `${ location.protocol }//${ location.host }/session/oauth/google/login`
       xhr.open("POST", url)
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.send('id_token=' + id_token);
   }
 
   function backend_logout() {
-      url = `${ location.protocol }//${ location.host }/logout`
+      url = `${ location.protocol }//${ location.host }/session`
       xhr.open("DELETE", url)
       xhr.send()
   }

@@ -26,8 +26,6 @@ class Logout(flask_restful.Resource):
                        'message': 'Log out from backend services was successful.'})
 
 
-#Do not add a route for this class.
-#Subclass it, and override the "validate" method.
 class Login(flask_restful.Resource):
 
     def post(self):
@@ -37,9 +35,6 @@ class Login(flask_restful.Resource):
             response.status_code = 400
             return response
         if self.validate(request.values):
-            # Should get database user id from self.[properties]
-            # And create new user if ID is not found.
-            # It uses id=0 for all users.
             user = User(0)
             login_user(user)
             return jsonify({'status': 'login_ok',
@@ -54,3 +49,13 @@ class Login(flask_restful.Resource):
 
     def check_values(self, request_values):
         return True, ''
+ 
+
+
+# Do not add a route for the "Login" class.
+# Subclass it, and override the "validate" method.
+
+# "User(0)" should use a unique id.
+# It should get database user id from self.[properties]
+# And create new user if ID is not found.
+# Currently, it uses id=0 for all users.

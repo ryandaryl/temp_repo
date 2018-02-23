@@ -5,7 +5,7 @@ from project import app
 from project.restfulapi import blueprints
 from project.restfulapi.session.simple.flask_session import Login
 
-api = flask_restful.Api(blueprints[__name__], prefix="/oauth/google")
+api = flask_restful.Api(blueprints[__name__], prefix="session/oauth/google")
 
 @api.route('/login')
 class OAuth_Google_Login(Login):
