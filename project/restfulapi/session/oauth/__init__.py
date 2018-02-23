@@ -8,7 +8,7 @@ from project.restfulapi.session.simple.flask_session import Login
 api = flask_restful.Api(blueprints[__name__], prefix="/oauth/google")
 
 @api.route('/login')
-class OAuth_Google_Login(simple.Login):
+class OAuth_Google_Login(Login):
 
     def validate(self):
         if 'id_token' in request.values:
