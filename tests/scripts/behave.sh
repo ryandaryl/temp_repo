@@ -1,4 +1,4 @@
-trap 'exit 0' SIGINT SIGQUIT SIGTERM
+trap 'exit 0' SIGTERM
 (sleep 5 && cd tests && behave && kill $$ &)
 timeout 30 coverage run --rcfile=tests/.coveragerc run_server.py --package project
 
