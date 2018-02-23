@@ -22,7 +22,7 @@ class SimpleLogout(flask_restful.Resource):
     @login_required
     def delete(self):
         logout_user()
-        return jsonify({'status': 'log_out_ok',
+        return jsonify({'status': 'logout_ok',
                        'message': 'Log out from backend services was successful.'})
 
 
@@ -37,10 +37,10 @@ class Login(flask_restful.Resource):
             # It uses id=0 for all users.
             user = User(0)
             login_user(user)
-            return jsonify({'status': 'log_in_ok',
+            return jsonify({'status': 'login_ok',
                             'message': 'Log in to backend services was successful.'})
         else:
-            response = jsonify({'status': 'log_in_failed'})
+            response = jsonify({'status': 'login_failed'})
             response.status_code = 400
             return response
     

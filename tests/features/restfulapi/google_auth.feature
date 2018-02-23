@@ -19,7 +19,7 @@ Feature: Google authentication feature
     Then the response status code should equal 400
     And the response status message should equal "BAD REQUEST"
     And the response header "Content-Type" should equal "application/json"
-    And the response parameter "error_description" should equal "Invalid Value"
+    And the response parameter "status" should equal "login_failed"
 
   @test
   Scenario: Test scenario for valid ID token
@@ -29,4 +29,4 @@ Feature: Google authentication feature
     Then the response status code should equal 200
     And the response status message should equal "OK"
     And the response header "Content-Type" should equal "application/json"
-    And the response parameter "status" should equal "log_in_ok"
+    And the response parameter "status" should equal "login_ok"
