@@ -1,20 +1,10 @@
 from flask import jsonify, request
 import flask_restful
-from flask_login import login_required, login_user, logout_user, UserMixin
+from flask_login import login_required, login_user, logout_user
 from project.restfulapi import blueprints
+from project.restfulapi.session import User
 
 api = flask_restful.Api(blueprints[__package__], prefix="/session")
-
-
-#This should be in Models
-class User(UserMixin):
-
-    def __init__(self, id):
-        self.id = id
-        
-    def __repr__(self):
-        return str(self.id)
-        
 
 @api.route('/')
 class Logout(flask_restful.Resource):
