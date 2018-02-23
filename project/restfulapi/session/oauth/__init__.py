@@ -11,9 +11,12 @@ api = flask_restful.Api(blueprints[__name__], prefix="/oauth/google")
 class OAuth_Google_Login(Login):
 
     def check_values(self, request_values):
-        if 'id_token' not in request_values:
+        if 'id_token' in request_values:
+            return True, ''
+        else:
             message = 'You need to add an id_token as a parameter. For example, ?id_token=XYZ123'
             return False, message
+            
 
     def validate(self, request_values):
         id_token = request_values.get('id_token')

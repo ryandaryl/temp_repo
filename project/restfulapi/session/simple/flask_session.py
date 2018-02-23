@@ -53,4 +53,4 @@ class Login(flask_restful.Resource):
         return False
 
     def check_values(self, request_values):
-        return True
+        return True, ''
