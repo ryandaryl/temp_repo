@@ -1,1 +1,1 @@
-from . import flask_session
+from project.restfulapi.session.simple import flask_session
